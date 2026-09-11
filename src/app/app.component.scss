@@ -53,8 +53,17 @@ h1 {
     cursor: pointer;   
 }
 
+.button-find-program {
+    background-color: #1A3E3E;
+    color: var(--white-color);
+    border: none;
+    border-radius: 6px;
+    padding: 16px 32px;
+    cursor: pointer;
+}
+
 .hero {
-    background-image: url('/images/mountains_bg.svg');
+    background-image: url('/images/mountains_bg.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
