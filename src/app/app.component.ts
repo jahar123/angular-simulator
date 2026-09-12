@@ -33,7 +33,7 @@ export class AppComponent {
   }
 
   private trackVisitsCount(): void {
-    const savedCount = localStorage.getItem('visitsCount');
+    const savedCount: string | null = localStorage.getItem('visitsCount');
     if (!savedCount) {
       localStorage.setItem('visitsCount', '1');
     } else {
