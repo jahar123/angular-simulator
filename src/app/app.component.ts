@@ -1,5 +1,5 @@
-import{Color} from '../enums/Color';
-import {Collection } from './collection';
+import { Color } from '../enums/Color';
+import { Collection } from './collection';
 import './training';
 
 import { Component } from '@angular/core';
@@ -12,20 +12,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-companyTitle: string = 'РУМТИБЕТ';
-stringCollection: Collection<string> = new Collection<string>();
-numberCollection: Collection<number> = new Collection<number>();
+  companyTitle: string = 'РУМТИБЕТ';
+  stringCollection: Collection<string> = new Collection<string>();
+  numberCollection: Collection<number> = new Collection<number>();
 
-constructor() {
-  this.saveLastVisitDate();
-  this.trackVisitsCount();
-}
+  constructor() {
+    this.saveLastVisitDate();
+    this.trackVisitsCount();
+  }
 
-isPrimaryColor(color: Color): boolean {
-  if (color === Color.RED || color === Color.GREEN || color === Color.BLUE) {
-  return true;
-  }  
-  return false;
+  isPrimaryColor(color: Color): boolean {
+    if (color === Color.RED || color === Color.GREEN || color === Color.BLUE) {
+      return true;
+    }
+    return false;
   }
 
   private saveLastVisitDate(): void {
@@ -33,13 +33,13 @@ isPrimaryColor(color: Color): boolean {
   }
 
   private trackVisitsCount(): void {
-  const savedCount = localStorage.getItem('visitsCount');
-  if (!savedCount) {
-    localStorage.setItem('visitsCount', '1');
-  } else {
-    const currentCount = parseInt(savedCount ?? '0') + 1;
-    localStorage.setItem('visitsCount', currentCount.toString()); 
+    const savedCount = localStorage.getItem('visitsCount');
+    if (!savedCount) {
+      localStorage.setItem('visitsCount', '1');
+    } else {
+      const currentCount = parseInt(savedCount ?? '0') + 1;
+      localStorage.setItem('visitsCount', currentCount.toString());
+    }
   }
-}
 
 }
