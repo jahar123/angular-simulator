@@ -1,3 +1,4 @@
+import {FormsModule} from '@angular/forms';
 import { Color } from '../enums/Color';
 import { Collection } from './collection';
 import './training';
@@ -6,11 +7,47 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+
+  selectedLocation: string = '';
+  selectedDate: string = '';
+  selectedParticipants: string =  '';
+  liveInput: string = '';
+  public isLoading: boolean = true;
+  public currentDate: string = '';
+  public activeMode: string = 'date';
+  public clickerCount: number = 0;
+  
+
+
+  tours = [
+    {id: 1,
+      title: 'Опытный гид',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      iconUrl: 'people',
+    },
+
+    {id: 2,
+      title: 'Безопасный поход',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      iconUrl: 'shield',
+    },
+
+    {id: 3,
+      title: 'Лояльные цены',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      iconUrl: 'tag',
+    },
+  ];
+
+  public ngOnInit(): void {
+    setInterval(() => {this.currentDate = new Date().toLocaleString()}, 1000);
+    setTimeout(() => {this.isLoading = false}, 2000);
+  }
 
   companyTitle: string = 'РУМТИБЕТ';
   stringCollection: Collection<string> = new Collection<string>();
