@@ -4,7 +4,7 @@
 
       @if (isLoading) {
       <div id="header-loader" class="icon-isLoading">
-        <img src="images/loader_icon.svg" alt="Загрузка">
+        <img src="images/loader_icon.svg" alt="Загрузка"/>
       </div>
       }
 
@@ -26,6 +26,7 @@
 
       <div class="cotainer-date">
         <div class="date-botton-row">
+
           @if (activeMode === 'date') {
           <div class="date-value-block">
             <p class="date-display-text">{{ currentDate }}</p>
@@ -49,7 +50,6 @@
             <span>Показать дату</span>
             }
           </button>
-
         </div>
       </div>
 
@@ -93,8 +93,13 @@
         <div class="form-item" id="form-item-participants">
           <label for="input-participants" class="form-text">
             <span class="item-title">Участники</span>
-            <span class="item-value"> @if (selectedParticipants ==='') {выберите из списка} @else{
-              {{selectedParticipants}} }</span>
+            <span class="item value">
+              @if (selectedParticipants === '') {
+              выберите из списка
+              } @else {
+              {{ selectedParticipants }}
+              }
+            </span>
           </label>
           <input type="number" id="input-participants" name="participants" [(ngModel)]="selectedParticipants">
           <img class="item-icon" src="images/arrow_icon.svg" alt="Выбор">
