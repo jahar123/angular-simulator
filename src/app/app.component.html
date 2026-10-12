@@ -4,7 +4,7 @@
 
       @if (isLoading) {
       <div id="header-loader" class="icon-isLoading">
-        <img src="images/loader_icon.svg" alt="Загрузка"/>
+        <img src="images/loader_icon.svg" alt="Загрузка" />
       </div>
       }
 
@@ -61,61 +61,74 @@
   <div class="container">
     <h2 class="hero-title">НАСЛАДИСЬ ПРОГУЛКОЙ В ГОРАХ С КОМАНДОЙ ЕДИНОМЫШЛЕННИКОВ</h2>
 
-    <form class="hero-form" id="form-search-tour">
-      <div class="form-wrapper">
+<form class="hero-form" id="form-search-tour">
+  <div class="form-wrapper">
 
-        <div class="form-item" id="form-item-location">
-          <div class="form-text">
-            <span class="item-title">Локация для тура</span>
-            <span class="item-value"> @if (selectedLocation === '') {выберите из списка} @else { @if (selectedLocation
-              === 'waterfall') {Водопад} @else if (selectedLocation === 'spring') {Источник} @else if (selectedLocation
-              === 'lake') {Озеро} }
-            </span>
-          </div>
-          <select name="location" id="select-location" [(ngModel)]="selectedLocation">
-            <option value="waterfall">Водопад</option>
-            <option value="spring">Источник</option>
-            <option value="lake">Озеро</option>
-          </select>
-          <img class="item-icon" src="images/arrow_icon.svg" alt="Выбор">
-        </div>
-
-        <div class="form-item" id="form-item-date">
-          <label for="input-date" class="form-text">
-            <span class="item-title">Дата похода</span>
-            <span class="item-value"> @if (selectedDate === '') {выберите дату} @else { {{selectedDate}} } </span>
-          </label>
-
-          <img class="item-icon calendar-icon" src="images/calendar_icon.svg" alt="Календарь">
-          <input type="date" id="input-date" name="date" [(ngModel)]="selectedDate">
-        </div>
-
-        <div class="form-item" id="form-item-participants">
-          <label for="input-participants" class="form-text">
-            <span class="item-title">Участники</span>
-            <span class="item value">
-              @if (selectedParticipants === '') {
-              выберите из списка
-              } @else {
-              {{ selectedParticipants }}
-              }
-            </span>
-          </label>
-          <input type="number" id="input-participants" name="participants" [(ngModel)]="selectedParticipants">
-          <img class="item-icon" src="images/arrow_icon.svg" alt="Выбор">
-        </div>
-
-        <button class="form-button" id="button-find-program">Найти программу</button>
-
+    <div class="form-item" id="form-item-location">
+      <div class="form-text">
+        <span class="item-title">Локация для тура</span>
+        <span class="item-value">
+          @if (selectedLocation === '') {
+            выберите из списка
+          } @else if (selectedLocation === 'waterfall') {
+            Водопад
+          } @else if (selectedLocation === 'spring') {
+            Источник
+          } @else if (selectedLocation === 'lake') {
+            Озеро
+          }
+        </span>
       </div>
+      <select name="location" id="select-location" [(ngModel)]="selectedLocation">
+        <option value="waterfall">Водопад</option>
+        <option value="spring">Источник</option>
+        <option value="lake">Озеро</option>
+      </select>
+      <img class="item-icon" src="images/arrow_icon.svg" alt="Выбор">
+    </div>
 
-      <div id="live-wrapper-container" class="live-text-container">
-        <input id="live-input-field" [(ngModel)]="liveInput" name="liveInputField" placeholder="Живой инпут" />
-        <span class="input-arrow">&gt;</span>
-        <div id="live-result">Введённый текст {{liveInput}}</div>
-      </div>
+    <div class="form-item" id="form-item-date">
+      <label for="input-date" class="form-text">
+        <span class="item-title">Дата похода</span>
+        <span class="item-value">
+          @if (selectedDate === '') {
+            выберите дату
+          } @else {
+            {{ selectedDate }}
+          }
+        </span>
+      </label>
+      <img class="item-icon calendar-icon" src="images/calendar_icon.svg" alt="Календарь">
+      <input type="date" id="input-date" name="date" [(ngModel)]="selectedDate">
+    </div>
 
-    </form>
+    <div class="form-item" id="form-item-participants">
+      <label for="input-participants" class="form-text">
+        <span class="item-title">Участники</span>
+        <span class="item-value">
+          @if (selectedParticipants === '') {
+            выберите из списка
+          } @else {
+            {{ selectedParticipants }}
+          }
+        </span>
+      </label>
+      <input type="number" id="input-participants" name="participants" [(ngModel)]="selectedParticipants">
+      <img class="item-icon" src="images/arrow_icon.svg" alt="Выбор">
+    </div>
+
+    <button class="form-button" id="button-find-program">Найти программу</button>
+
+  </div>
+
+  <div id="live-wrapper-container" class="live-text-container">
+    <input id="live-input-field" [(ngModel)]="liveInput" name="liveInputField" placeholder="Живой инпут" />
+    <span class="input-arrow">&gt;</span>
+    <div id="live-result">Введённый текст {{ liveInput }}</div>
+  </div>
+
+</form>
+
 
   </div>
 </section>
@@ -144,11 +157,11 @@
         тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
 
       @for (tour of tours; track tour.id) {
-      <div class="tour-card" id="tour-card-{{tour.id}}">
-        <img [src]="'images/' + tour.iconUrl + '_icon.svg'">
-        <h3>{{ tour.title }}</h3>
-        <p>{{ tour.description }}</p>
-      </div>
+        <div class="tour-card" id="tour-card-{{tour.id}}">
+          <img [src]="'images/' + tour.iconUrl + '_icon.svg'">
+          <h3>{{ tour.title }}</h3>
+          <p>{{ tour.description }}</p>
+        </div>
       }
       <button id="tour-btn">Стоимость программ</button>
     </div>
