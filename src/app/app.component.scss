@@ -418,3 +418,198 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: bold;
     pointer-events: none; 
 }
+
+.popular-directions-container {
+    margin-top: 80px;
+}
+
+.popular-directions-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+  
+}
+
+.popular-directions-title {
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.popular-directions-img {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#rating-directions-btn {
+    background-color: #1A3E3E;
+    padding: 16px 36px;
+    border-radius: 6px;
+    color: var(--white-color);
+    font-size: 16;
+    transition: all 0.5s ease;
+    margin-top: 50px;
+    margin-bottom: 16px;
+    margin-left: 638px;
+}
+
+#travel-blog {
+    background-color: #F3F5F4;
+    padding: 60px 0;
+    width: 100%;
+}
+
+.article-item {
+    background: #FFFFFF;
+    border: 1px solid #D0D0D0; 
+    border-radius: 12px; 
+    padding: 24px; 
+    display: flex;
+    gap: 24px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); 
+    
+ &:hover {
+    transform: scale(1.1);
+    background-color: blueviolet;
+    transition: all 0.5s ease;
+  }
+}
+
+.travel-blog-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 180px;
+}
+
+.travel-blog-title {
+    font-size: 32px;
+    font-weight: 800;
+    margin-top: 8px;
+}
+
+.article-text {
+    margin: 0 0 24px 0; 
+    font-size: 17px;
+    color: #18121E;
+    line-height: 1.5; 
+}
+
+.article-footer {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    margin-top: auto; 
+    width: 100%;
+}
+
+.article-link {
+    color: #181818; 
+    text-decoration: underline; 
+    font-weight: bold; 
+}
+
+.article-date {
+    color: #FFB703;
+    font-weight: bold; 
+}
+
+.article-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 30px; 
+    list-style: none; 
+    padding: 0 20px; 
+    margin: 0 auto; 
+    max-width: 1200px; 
+}
+
+.blog-img {
+    width: 200px;
+    height: auto;
+    min-height: 200px; 
+    object-fit: cover; 
+    border-radius: 8px; 
+}
+
+.article-content {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    flex-grow: 1;  
+}
+
+.other-materials {
+    background-color: #1A3E3E;
+    padding: 16px 36px;
+    border-radius: 6px;
+    color: var(--white-color);
+    font-size: 16;
+    transition: all 0.5s ease;
+    margin-top: 50px;
+    margin-bottom: 16px;
+    margin-left: 648px; 
+}
+
+/* Контейнер, который держит все уведомления в правом верхнем углу экрана */
+.toast-container {
+  position: fixed; /* Фиксируем на экране, чтобы не улетало при скролле сайта */
+  top: 24px; /* Отступ сверху от края экрана */
+  right: 24px; /* Отступ справа от края экрана */
+  display: flex; /* Включаем флексбокс для выравнивания */
+  flex-direction: column; /* Располагаем уведомления строго друг под другом */
+  gap: 12px; /* Расстояние между плашками в 12 пикселей */
+  z-index: 9999; /* Поднимаем слой на самый верх, чтобы перекрыть все блоки сайта */
+}
+
+/* Базовые общие стили для любой плашки уведомления */
+.toast {
+  padding: 16px 24px; /* Внутренние отступы, чтобы текст не прилипал к краям */
+  border-radius: 8px; /* Скругляем уголки плашки на 8 пикселей */
+  color: #FFFFFF; /* Делаем текст внутри всех уведомлений белым */
+  font-weight: bold; /* Делаем шрифт жирным, чтобы легко читался */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Мягкая тень, чтобы плашка «парила» над сайтом */
+  min-width: 250px; /* Минимальная ширина плашки, чтобы она не сжималась */
+  transition: all 0.3s ease; /* Плавный переход для будущих анимаций */
+}
+
+/* Зелёный фон для успешных уведомлений */
+.toast-success {
+  background-color: #2ECC71; /* Сочный зелёный цвет */
+}
+
+/* Синий фон для информационных уведомлений */
+.toast-info {
+  background-color: #3498DB; /* Спокойный синий цвет */
+}
+
+/* Жёлтый фон для предупреждений */
+.toast-warn {
+  background-color: #F1C40F; /* Заметный жёлтый цвет */
+  color: #181818; /* Для жёлтого фона делаем текст темно-серым, чтобы не сливался */
+}
+
+/* Красный фон для ошибок */
+.toast-error {
+  background-color: #E74C3C; /* Яркий красный цвет */
+}
+
+.toast-container .class-toast {
+  animation: slideIn 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

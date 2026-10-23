@@ -1,18 +1,41 @@
+export enum MessageType {
+  Success = 'Success',
+  Info = 'Info',
+  Warn = 'Warn',
+  Error = 'Error'
+}
+
+export interface ToastMessage {
+  type: MessageType;
+  message: string;
+  id: number;
+}
+
 import { FormsModule } from '@angular/forms';
 import { Color } from '../enums/Color';
 import { Collection } from './collection';
 import './training';
-
+import { CommonModule } from '@angular/common'
 import { Component } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { ToastService } from './toast.service';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule],
+  imports: [ CommonModule,FormsModule, NgClass],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
 
+export class AppComponent {
+  messages: ToastMessage[] = [
+    {type: MessageType.Success, message:'Успешно!', id: 1 },
+    {type: MessageType.Info, message:'Инфо', id: 2 },
+    {type: MessageType.Warn, message: 'Предупреждение', id: 3 },
+    {type: MessageType.Error, message: 'Ошибка', id: 4 },
+  ];
+
+  messageType = MessageType;
   selectedLocation: string = '';
   selectedDate: string = '';
   selectedParticipants: string = '';
@@ -21,7 +44,6 @@ export class AppComponent {
   currentDate: string = '';
   activeMode: string = 'date';
   clickerCount: number = 0;
-
 
 
   tours = [
@@ -47,11 +69,45 @@ export class AppComponent {
     },
   ];
 
+articles = [
+  {
+    id: 1,
+    title: 'Красивая Италия, какая она в реальности?',
+    description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+    imageUrl: 'blog_card_coast',
+    date: '01/04/2023',
+  },
+
+  {
+    id: 2,
+    title: 'Долой сомнения! Весь мир открыт для вас!',
+    description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих....',
+    imageUrl: 'blog_card_plane',
+    date: '01/04/2023',
+  },
+
+  {
+    id: 3,
+    title: 'Как подготовиться к путешествию в одиночку? ',
+    description: 'Для современного мира базовый вектор развития предполагает.',
+    imageUrl: 'blog_card_street',
+    date: '01/04/2023',
+  },
+
+  {
+    id: 4,
+    title: 'Для современного мира базовый вектор развития предполагает.',
+    description: 'Для современного мира базовый.',
+    imageUrl: 'blog_card_mosque',
+    date: '01/04/2023',
+  },
+];
+
   companyTitle: string = 'РУМТИБЕТ';
   stringCollection: Collection<string> = new Collection<string>();
   numberCollection: Collection<number> = new Collection<number>();
 
-  constructor() {
+  constructor(public toastService: ToastService) {
     this.saveLastVisitDate();
     this.trackVisitsCount();
     setInterval(() => { this.currentDate = new Date().toLocaleString() }, 1000);
