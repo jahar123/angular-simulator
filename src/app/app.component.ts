@@ -38,6 +38,7 @@ export class AppComponent {
   messageType = MessageType;
   selectedLocation: string = '';
   selectedDate: string = '';
+  selectedDestinationId: number | null = null;
   selectedParticipants: string = '';
   liveInput: string = '';
   isLoading: boolean = true;
@@ -69,39 +70,69 @@ export class AppComponent {
     },
   ];
 
-articles = [
-  {
-    id: 1,
-    title: 'Красивая Италия, какая она в реальности?',
-    description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-    imageUrl: 'blog_card_coast',
-    date: '01/04/2023',
-  },
+  destinations = [
+    {
+      id: 1,
+      title: 'Озеро возле гор',
+      imageUrl: 'lake_mountains',
+      description: 'романтическое приключение',
+      rating: 4.9,
+      price: 480
+    },
 
-  {
-    id: 2,
-    title: 'Долой сомнения! Весь мир открыт для вас!',
-    description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих....',
-    imageUrl: 'blog_card_plane',
-    date: '01/04/2023',
-  },
+    {
+      id: 2,
+      title: 'Ночь в горах',
+      imageUrl: 'night_mountains',
+      description: 'в компании друзей',
+      rating: 4.5,
+      price: 500
+    },
 
-  {
-    id: 3,
-    title: 'Как подготовиться к путешествию в одиночку? ',
-    description: 'Для современного мира базовый вектор развития предполагает.',
-    imageUrl: 'blog_card_street',
-    date: '01/04/2023',
-  },
+    {
+      id: 3,
+      title: 'Растяжка в горах',
+      imageUrl: 'rock_mountains',
+      description: 'для тех, кто забоится о себе',
+      rating: 5.0,
+      price: 230
+      
+    },
+  ];
 
-  {
-    id: 4,
-    title: 'Для современного мира базовый вектор развития предполагает.',
-    description: 'Для современного мира базовый.',
-    imageUrl: 'blog_card_mosque',
-    date: '01/04/2023',
-  },
-];
+  articles = [
+    {
+      id: 1,
+      title: 'Красивая Италия, какая она в реальности?',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      imageUrl: 'blog_card_coast',
+      date: '01/04/2023',
+    },
+
+    {
+      id: 2,
+      title: 'Долой сомнения! Весь мир открыт для вас!',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих....',
+      imageUrl: 'blog_card_plane',
+      date: '01/04/2023',
+    },
+
+    {
+      id: 3,
+      title: 'Как подготовиться к путешествию в одиночку? ',
+      description: 'Для современного мира базовый вектор развития предполагает.',
+      imageUrl: 'blog_card_street',
+      date: '01/04/2023',
+    },
+
+    {
+      id: 4,
+      title: 'Для современного мира базовый вектор развития предполагает.',
+      description: 'Для современного мира базовый.',
+      imageUrl: 'blog_card_mosque',
+      date: '01/04/2023',
+    },
+  ];
 
   companyTitle: string = 'РУМТИБЕТ';
   stringCollection: Collection<string> = new Collection<string>();

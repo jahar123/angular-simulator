@@ -420,27 +420,171 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .popular-directions-container {
-    margin-top: 80px;
+  margin-top: 80px;             
+  display: flex;                
+  justify-content: center;      
+  gap: 30px;                    
+  flex-wrap: wrap;             
 }
 
-.popular-directions-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 50px;
+.direction-card {
+  position: relative;          
+  width: 350px;                
+  height: 450px;                
+  border-radius: 32px;         
+  overflow: hidden;          
+  cursor: pointer;              
+}
+
+.directions-img {
+  width: 100%;                 
+  height: 100%;                 
+  object-fit: cover;            
+}
+
+.rating-badge {
+  position: absolute;           
+  top: 20px;                    
+  right: 20px;                  
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);  
+  padding: 6px 12px;          
+  border-radius: 20px;        
+  color: #FFFFFF;               
+  font-weight: bold;           
+  font-size: 14px;             
+  display: flex;                
+  align-items: center;          
+  gap: 4px;                     
+  z-index: 2;                   
+}
+
+.star-icon {
+  color: #FFD700;              
+}
+
+.card-base-text {
+  position: absolute;         
+  bottom: 0;                   
+  left: 0;                      
+  width: 100%;                 
+  background: rgba(24, 24, 24, 0.4); 
+  backdrop-filter: blur(10px);  
+  padding: 20px 24px;          
+  box-sizing: border-box;       
+  display: flex;                
+  justify-content: space-between; 
+  align-items: center;          
+  z-index: 1;                   
+}
+
+.card-text-left {
+  display: flex;               
+  flex-direction: column;       
+  gap: 4px;                    
+}
+
+.card-base-text h3 {
+  color: #FFFFFF;              
+  font-size: 20px;             
+  font-weight: 700;             
+  margin: 0;                    
+}
+
+.card-subtitle {
+  color: #E0E0E0;               
+  font-size: 14px;              
+  margin: 0;                    
+}
+
+.card-price {
+  color: #FFFFFF;               
+  font-size: 22px;              
+  font-weight: 800;             
+}
+
+.hover-info {
+  position: absolute;           
+  bottom: 0;                   
+  left: 0;                      
+  width: 100%;                
+  height: 100%;                
+  background: rgba(24, 24, 24, 0.9); 
+  padding: 30px;               
+  box-sizing: border-box;       
+  display: flex;                
+  flex-direction: column;       
+  justify-content: flex-end;    
+  gap: 20px;                   
+  z-index: 3;                   
   
+  opacity: 0;                 
+  pointer-events: none;         
+  transition: opacity 0.3s ease; 
 }
 
-.popular-directions-title {
-    font-size: 32px;
-    font-weight: 800;
+.card-desc {
+  color: #FFFFFF;              
+  font-size: 14px;             
+  line-height: 1.6;             
+  margin: 0;                   
 }
 
-.popular-directions-img {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+.program-btn {
+  background: #10B981;          
+  color: #FFFFFF;               
+  border: none;                 
+  border-radius: 12px;          
+  padding: 14px 24px;           
+  font-weight: 700;             
+  font-size: 16px;             
+  cursor: pointer;              
+  width: 100%;                 
+  transition: background 0.2s;  
+}
+
+.program-btn:hover {
+  background: #059669;         
+}
+
+.direction-card.active .hover-info {
+  opacity: 1;                  
+  pointer-events: auto;       
+}
+
+.hover-header {
+  margin-bottom: auto;          
+  text-align: left;             
+}
+
+.hover-header h3 {
+  color: #FFFFFF;               
+  font-size: 24px;             
+  font-weight: 700;             
+  margin: 0 0 4px 0;            
+}
+
+.hover-header .card-subtitle {
+  color: rgba(255, 255, 255, 0.7); 
+  font-size: 14px;              
+  margin: 0;                    
+}
+
+.hover-top-line {
+  display: flex;               
+  justify-content: space-between; 
+  align-items: flex-start;     
+  width: 100%;                 
+  margin-bottom: auto;          
+}
+
+.card-price-hover {
+  color: #FFFFFF;               
+  font-size: 22px;              
+  font-weight: 800;             
+  background: rgba(255, 255, 255, 0.2); 
+  padding: 6px 12px;           
+  border-radius: 12px;          
 }
 
 #rating-directions-btn {
@@ -555,47 +699,41 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-left: 648px; 
 }
 
-/* Контейнер, который держит все уведомления в правом верхнем углу экрана */
 .toast-container {
-  position: fixed; /* Фиксируем на экране, чтобы не улетало при скролле сайта */
-  top: 24px; /* Отступ сверху от края экрана */
-  right: 24px; /* Отступ справа от края экрана */
-  display: flex; /* Включаем флексбокс для выравнивания */
-  flex-direction: column; /* Располагаем уведомления строго друг под другом */
-  gap: 12px; /* Расстояние между плашками в 12 пикселей */
-  z-index: 9999; /* Поднимаем слой на самый верх, чтобы перекрыть все блоки сайта */
+  position: fixed; 
+  top: 24px; 
+  right: 24px; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 12px; 
+  z-index: 9999; 
 }
 
-/* Базовые общие стили для любой плашки уведомления */
 .toast {
-  padding: 16px 24px; /* Внутренние отступы, чтобы текст не прилипал к краям */
-  border-radius: 8px; /* Скругляем уголки плашки на 8 пикселей */
-  color: #FFFFFF; /* Делаем текст внутри всех уведомлений белым */
-  font-weight: bold; /* Делаем шрифт жирным, чтобы легко читался */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Мягкая тень, чтобы плашка «парила» над сайтом */
-  min-width: 250px; /* Минимальная ширина плашки, чтобы она не сжималась */
-  transition: all 0.3s ease; /* Плавный переход для будущих анимаций */
+  padding: 16px 24px; 
+  border-radius: 8px;
+  color: #FFFFFF; 
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+  min-width: 250px; 
+  transition: all 0.3s ease;
 }
 
-/* Зелёный фон для успешных уведомлений */
 .toast-success {
-  background-color: #2ECC71; /* Сочный зелёный цвет */
+  background-color: #2ECC71;
 }
 
-/* Синий фон для информационных уведомлений */
 .toast-info {
-  background-color: #3498DB; /* Спокойный синий цвет */
+  background-color: #3498DB; 
 }
 
-/* Жёлтый фон для предупреждений */
 .toast-warn {
-  background-color: #F1C40F; /* Заметный жёлтый цвет */
-  color: #181818; /* Для жёлтого фона делаем текст темно-серым, чтобы не сливался */
+  background-color: #F1C40F; 
+  color: #181818; 
 }
 
-/* Красный фон для ошибок */
 .toast-error {
-  background-color: #E74C3C; /* Яркий красный цвет */
+  background-color: #E74C3C; 
 }
 
 .toast-container .class-toast {
