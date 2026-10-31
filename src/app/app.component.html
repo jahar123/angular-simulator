@@ -200,22 +200,12 @@
 
       @for (tour of tours; track tour.id) {
         <div class="tour-card" id="tour-card-{{ tour.id }}">
-          <img [src]="'images/' + tour.iconUrl + '_icon.svg'" />
+          <img [src]="'images/' + tour.icon + '_icon.svg'" />
           <h3>{{ tour.title }}</h3>
           <p>{{ tour.description }}</p>
         </div>
       }
-      <button
-        id="tour-btn"
-        4.
-        •
-        (click)="
-          toastService.addMessage(
-            'Внимание! Цены указаны со скидкой до конца недели.',
-            messageType.Warn
-          )
-        "
-      >
+      <button id="tour-btn" (click)="toastService.addMessage('Внимание! Цены указаны со скидкой до конца недели.', messageType.Warn)">
         Стоимость программ
       </button>
     </div>
@@ -226,7 +216,9 @@
       <img class="tours-img" src="images/snowmobile.png" alt="Снегоход" />
       <img class="tours-img" src="images/mountain_range.png" alt="Горный хребет" />
     </div>
+
   </div>
+
 </section>
 
 <section id="popular-directions">
@@ -235,44 +227,41 @@
       <span class="subtitle">по версии отдыхающих</span>
       <h1 class="popular-directions-title">Популярные направления</h1>
     </div>
-@for (destination of destinations; track destination.id) {
-    <div class="direction-card" [class.active]="selectedDestinationId === destination.id" (click)="selectedDestinationId = (selectedDestinationId === destination.id ? null : destination.id)">
-      
-        <!-- Рейтинг со звездой -->
+    @for (destination of destinations; track destination.id) {
+      <div
+        class="direction-card"
+        [class.active]="selectedDestinationId === destination.id"
+        (click)="
+          selectedDestinationId = selectedDestinationId === destination.id ? null : destination.id">
         <div class="rating-badge">
-            <span class="star-icon">★</span>
-            <span class="rating-value">{{ destination.rating }}</span>
+          <span class="star-icon">★</span>
+          <span class="rating-value">{{ destination.rating | number: '1.1-1' }}</span>
         </div>
 
-        <!-- Картинка тура -->
-        <img class="directions-img" [src]="'images/' + destination.imageUrl + '.png'" />
-        
-        <!-- Базовая плашка до клика (ЦИФРЫ УБРАНЫ) -->
+        <img class="directions-img" [src]="'images/' + destination.image + '.png'" />
+
         <div class="card-base-text">
-            <div class="card-text-left">
-                <h3>{{ destination.title }}</h3>
-                <p class="card-subtitle">по версии отдыхающих</p>
-            </div>
-            <span class="card-price">{{ destination.price }} $</span>
+          <div class="card-text-left">
+            <h3>{{ destination.title }}</h3>
+            <p class="card-subtitle">по версии отдыхающих</p>
+          </div>
+          <span class="card-price">{{ destination.price }} $</span>
         </div>
 
-        <!-- Раскрытая плашка по клику -->
         <div class="hover-info">
-            <div class="hover-top-line">
-                <div class="hover-header">
-                    <h3>{{ destination.title }}</h3>
-                    <p class="card-subtitle">по версии отдыхающих</p>
-                </div>
-                <span class="card-price-hover">{{ destination.price }} $</span>
+          <div class="hover-top-line">
+            <div class="hover-header">
+              <h3>{{ destination.title }}</h3>
+              <p class="card-subtitle">по версии отдыхающих</p>
             </div>
-            
-            <p class="card-desc">{{ destination.description }}</p>
-            <button class="program-btn">Программа тура</button>
+            <span class="card-price-hover">{{ destination.price }} $</span>
+          </div>
+
+          <p class="card-desc">{{ destination.description }}</p>
+          <button class="program-btn">Программа тура</button>
         </div>
-    </div>
-}
-
-
+      </div>
+    }
 
     <div class="rating">
       <button
@@ -281,10 +270,7 @@
         1.
         (click)="
           toastService.addMessage('Ошибка сервера. Не удалось обновить рейтинг.', messageType.Error)
-        "
-      >
-        Рейтинг направлений
-      </button>
+        ">Рейтинг направлений</button>
     </div>
   </div>
 </section>
@@ -300,7 +286,7 @@
         <li class="article-item" id="article-{{ article.id }}">
           <img
             class="blog-img"
-            [src]="'images/' + article.imageUrl + '.jpg'"
+            [src]="'images/' + article.image + '.jpg'"
             alt="Изображение статьи"
           />
 
@@ -333,15 +319,7 @@
   }
 
   <ng-template #toastRef let-toast>
-    <div
-      class="class-toast"
-      [ngClass]="{
-        'toast-success': toast.type === messageType.Success,
-        'toast-info': toast.type === messageType.Info,
-        'toast-warn': toast.type === messageType.Warn,
-        'toast-error': toast.type === messageType.Error,
-      }"
-    >
+    <div class="toast" [class]="'toast-' + toast.type.toLowerCase()">
       {{ toast.message }}
       <button class="toast-close" (click)="toastService.closeMessage(toast.id)">&times;</button>
     </div>
